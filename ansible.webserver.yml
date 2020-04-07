@@ -1,0 +1,17 @@
+- name: Update the apt-get cache
+  apt:
+    update_cache: yes
+
+- name: Install PHP
+  apt:
+    name: php
+
+- name: Install Apache
+  apt:
+    name: httpd
+
+- name: Copy the code from repository
+  git: repo=git@github.com:acme/my-app.git dest=/var/www/html/
+
+- name: Start Apache
+  service: name=httpd state=started enabled=yes
